@@ -3,238 +3,390 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>PANKAJ Office</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-background:url("https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3") center/cover no-repeat;
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-color:#fff;
-position:relative;
+    min-height:100vh;
+    background:#050505;
+    font-family:'Poppins',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
 }
+
+/* Background Glow */
 
 body::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,rgba(0,0,0,0.7),rgba(0,0,0,0.95));
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    left:-180px;
+    top:-100px;
+    background:radial-gradient(circle,#c58c1a,transparent 70%);
+    filter:blur(80px);
+    opacity:.35;
+    animation:moveGlow1 8s ease-in-out infinite;
 }
 
-/* MAIN CARD */
+body::after{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    right:-180px;
+    bottom:-100px;
+    background:radial-gradient(circle,#ffcb30,transparent 70%);
+    filter:blur(80px);
+    opacity:.25;
+    animation:moveGlow2 10s ease-in-out infinite;
+}
+
+@keyframes moveGlow1{
+    50%{
+        transform:translate(50px,-30px) scale(1.1);
+    }
+}
+
+@keyframes moveGlow2{
+    50%{
+        transform:translate(-50px,30px) scale(1.1);
+    }
+}
 
 .container{
-position:relative;
-width:95%;
-max-width:420px;
-padding:35px 25px;
-text-align:center;
-
-background:rgba(0,0,0,0.45);
-backdrop-filter:blur(14px);
-
-border-radius:20px;
-border:1px solid rgba(255,255,255,0.08);
-
-box-shadow:0 25px 70px rgba(0,0,0,0.9);
+    width:100%;
+    max-width:700px;
+    text-align:center;
+    padding:30px 20px;
+    position:relative;
+    z-index:10;
+    animation:fadeUp .8s ease;
 }
 
-/* LOGO */
-
-.logo{
-width:95px;
-height:95px;
-border-radius:50%;
-border:3px solid gold;
-margin-bottom:15px;
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-/* HEADINGS */
+/* Profile */
+
+.profile{
+    width:95px;
+    height:95px;
+    margin:auto;
+    border-radius:50%;
+    padding:3px;
+
+    background:linear-gradient(
+        135deg,
+        #fff4c7,
+        #d4a437
+    );
+
+    animation:
+        floatLogo 4s ease-in-out infinite,
+        glowLogo 3s ease-in-out infinite;
+}
+
+.profile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #000;
+}
+
+@keyframes floatLogo{
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+@keyframes glowLogo{
+    0%,100%{
+        box-shadow:
+        0 0 15px rgba(255,203,48,.4),
+        0 0 35px rgba(255,203,48,.2);
+    }
+
+    50%{
+        box-shadow:
+        0 0 25px rgba(255,203,48,.9),
+        0 0 60px rgba(255,203,48,.5);
+    }
+}
+
+/* Title */
 
 h1{
-color:#FFD700;
-font-size:22px;
-margin-bottom:6px;
+    margin-top:20px;
+    font-family:'Cinzel',serif;
+    font-size:52px;
+    text-transform:uppercase;
+
+    background:linear-gradient(
+        to bottom,
+        #fff7da,
+        #f4dd8c,
+        #c58c1a
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    position:relative;
+    display:inline-block;
 }
 
-h2{
-font-size:17px;
-margin-bottom:12px;
-font-weight:600;
+h1::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-150%;
+    width:60%;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.8),
+        transparent
+    );
+
+    transform:skewX(-20deg);
+
+    animation:shine 4s linear infinite;
 }
 
-.sub{
-font-size:14px;
-opacity:0.9;
-margin-bottom:18px;
+@keyframes shine{
+    100%{
+        left:250%;
+    }
 }
 
-/* POINTS */
-
-.points{
-list-style:none;
-font-size:14px;
-margin:15px 0;
+.subtitle{
+    color:#cfcfcf;
+    margin-top:10px;
+    font-size:13px;
+    letter-spacing:4px;
+    font-weight:600;
 }
 
-.points li{
-margin:8px 0;
+/* Card */
+
+.card{
+    width:100%;
+    max-width:500px;
+    margin:35px auto;
+
+    padding:28px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.5),
+    0 0 20px rgba(255,203,48,.08);
+
+    animation:cardFloat 6s ease-in-out infinite;
 }
 
-/* BUTTON */
-
-.btn{
-display:block;
-background:linear-gradient(135deg,#00c6ff,#0072ff);
-padding:18px;
-border-radius:12px;
-text-decoration:none;
-color:white;
-font-size:16px;
-font-weight:700;
-margin-top:18px;
-box-shadow:0 15px 40px rgba(0,176,255,0.6);
-transition:0.3s;
-position:relative;
-overflow:hidden;
+@keyframes cardFloat{
+    50%{
+        transform:translateY(-8px);
+    }
 }
 
-.btn::before{
-content:"";
-position:absolute;
-top:0;
-left:-120%;
-width:120%;
-height:100%;
-background:linear-gradient(120deg,transparent,rgba(255,255,255,0.6),transparent);
-transition:0.6s;
+.card p{
+    color:white;
+    font-size:16px;
+    line-height:1.6;
+    margin-bottom:20px;
 }
 
-.btn:hover::before{
-left:120%;
+.card strong{
+    font-weight:700;
 }
 
-.btn:hover{
-transform:translateY(-3px);
-box-shadow:0 20px 50px rgba(0,176,255,0.9);
+.stats{
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid rgba(255,255,255,.08);
+    padding-top:18px;
 }
 
-/* INFO */
+.stat h3{
+    color:#ffcb30;
+    font-size:24px;
 
-.timer{
-margin-top:12px;
-font-size:14px;
-color:#FFD700;
+    animation:statGlow 2s ease-in-out infinite;
 }
 
-.badge{
-margin-top:12px;
-font-size:13px;
-opacity:0.9;
+@keyframes statGlow{
+    50%{
+        text-shadow:
+        0 0 10px #ffcb30,
+        0 0 20px #ffcb30;
+    }
 }
 
-.risk{
-font-size:11px;
-opacity:0.6;
-margin-top:10px;
+.stat span{
+    color:#9e9e9e;
+    font-size:11px;
+    letter-spacing:1px;
 }
 
-/* ADS */
+/* Button */
 
-.ads-box{
-margin-top:24px;
-padding:10px 18px;
-font-size:13px;
-background:linear-gradient(135deg,#4f46e5,#9333ea,#ec4899);
-border-radius:10px;
-display:inline-block;
-box-shadow:0 5px 20px rgba(0,0,0,0.4);
-animation:glow 2s infinite alternate;
+.cta{
+    width:400px;
+    max-width:90%;
+    height:75px;
+
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+
+    font-size:20px;
+    font-weight:700;
+    color:#111;
+
+    border-radius:50px;
+
+    position:relative;
+    overflow:hidden;
+
+    background:linear-gradient(
+        120deg,
+        #fff4c7,
+        #d4a437,
+        #fff4c7
+    );
+
+    box-shadow:
+    0 0 25px rgba(255,203,48,.4),
+    0 0 60px rgba(255,203,48,.2);
+
+    animation:buttonPulse 3s ease-in-out infinite;
+
+    transition:.3s;
 }
 
-.ads-box a{
-color:#aee3ff;
-font-weight:700;
-text-decoration:none;
+.cta:hover{
+    transform:translateY(-3px) scale(1.02);
 }
 
-.ads-box a:hover{
-text-decoration:underline;
+.cta::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-150%;
+    width:60%;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.9),
+        transparent
+    );
+
+    transform:skewX(-25deg);
+
+    animation:buttonShine 3s linear infinite;
 }
 
-@keyframes glow{
-from{box-shadow:0 0 10px #9333ea;}
-to{box-shadow:0 0 20px #ec4899;}
+@keyframes buttonShine{
+    100%{
+        left:250%;
+    }
+}
+
+@keyframes buttonPulse{
+
+    50%{
+        box-shadow:
+        0 0 40px rgba(255,203,48,.8),
+        0 0 90px rgba(255,203,48,.3);
+    }
+}
+
+/* Footer */
+
+.footer{
+    margin-top:20px;
+    font-size:12px;
+    letter-spacing:2px;
+    color:#7f7f7f;
+}
+
+.agency{
+    margin-top:10px;
+    color:white;
+}
+
+.agency span{
+    color:#ffcb30;
+    font-weight:700;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    h1{
+        font-size:34px;
+    }
+
+    .card{
+        max-width:100%;
+        padding:20px;
+    }
+
+    .stats{
+        gap:10px;
+    }
+
+    .stat h3{
+        font-size:18px;
+    }
+
+    .cta{
+        height:65px;
+        font-size:16px;
+    }
 }
 
 </style>
-</head>
-
-<body>
-
-<div class="container">
-
-<a href="https://telegram.me/+9mTXRlZAKKllZWNl" class="btn">
-🚀 JOIN FREE TELEGRAM CHANNEL
-</a>
-
-<br>
-
-<img src="https://i.ibb.co/HThtfpR7/Whats-App-Image-2026-01-30-at-8-54-08-PM.jpg" class="logo">
-
-<h1>
-
-𝗧𝗥𝗔𝗗𝗘 𝗪𝗜𝗧𝗛 𝗠𝗨𝗡𝗔𝗔𝗙</h1>
-
-<h2>NIFTY • BANKNIFTY • OPTIONS</h2>
-
-<p class="sub">
-Daily Intraday Trading & Option Analysis
-</p>
-
-<ul class="points">
-<li>✔ 5–7 Daily Expert Calls</li>
-<li>✔ Proper Stop Loss & Targets</li>
-<li>✔ Beginner Friendly Market Analysis</li>
-</ul>
-
-<a href="https://telegram.me/+9mTXRlZAKKllZWNl" class="btn">
-🚀 JOIN FREE TELEGRAM CHANNEL
-</a>
-
-<div class="timer">
-⏳ Limited Free Access Today
-</div>
-
-<div class="badge">
-🇮🇳 India's Trusted Stock Market Community
-</div>
-
-<p class="risk">
-⚠ Market investments are subject to risk
-</p>
-
-<div class="ads-box">
-📢 Ads by 
-<a href="https://t.me/+m-ShYwHUK0Y3NmY1" target="_blank">
-@Adskillagency
-</a>
-• Instant Growth 🚀
-</div>
-
-</div>
 
 <!-- Meta Pixel Code -->
 <script>
@@ -246,43 +398,71 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1014994674473967');
+fbq('init', '1685729619171106');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1014994674473967&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=1685729619171106&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+    
+</head>
+<body>
 
+<div class="container">
 
+    <div class="profile">
+        <img src="https://telegram.me/+9mTXRlZAKKllZWNl" alt="Profile">
+    </div>
 
+    <h1>Pankaj Official™</h1>
 
+    <div class="subtitle">
+        ELITE TRADING MASTERY
+    </div>
 
+    <div class="card">
 
+        <p>
+            Master the charts and crush the markets.<br>
+            Join us for <strong>real-time predictive insights</strong><br>
+            and exclusive winning strategies.
+        </p>
 
+        <div class="stats">
 
-<script>
-  let timeLeft = 10;
+            <div class="stat">
+                <h3>12.4k+</h3>
+                <span>TRADERS</span>
+            </div>
 
-  const countdown = setInterval(() => {
-    timeLeft--;
+            <div class="stat">
+                <h3>98.2%</h3>
+                <span>ACCURACY</span>
+            </div>
 
-    // Agar tum text dikhana chahte ho to ye line use karo
-    if (document.getElementById("timer")) {
-      document.getElementById("timer").innerText = timeLeft;
-    }
+            <div class="stat">
+                <h3>LIVE</h3>
+                <span>ANALYSIS</span>
+            </div>
 
-    // 0 hone par redirect
-    if (timeLeft <= 0) {
-      clearInterval(countdown);
-      window.location.href = "https://t.me/+Nmnl_3PqvXs4YzA1";
-    }
+        </div>
 
-  }, 1000);
-</script>
+    </div>
 
+    <a href="https://telegram.me/+9mTXRlZAKKllZWNl" class="cta">
+        JOIN THE LEARNING CHANNEL
+    </a>
 
+    <div class="footer">
+        ✦ 18+ | PLAY RESPONSIBLY ✦
 
+        <div class="agency">
+            Ads managed by <span>@Adskillagency</span>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
